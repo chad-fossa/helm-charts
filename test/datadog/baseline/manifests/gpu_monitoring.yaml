@@ -1183,6 +1183,7 @@ spec:
             capabilities:
               add:
                 - MKNOD
+            readOnlyRootFilesystem: true
           startupProbe:
             failureThreshold: 6
             httpGet:
@@ -1325,6 +1326,8 @@ spec:
               name: traceport
               protocol: TCP
           resources: {}
+          securityContext:
+            readOnlyRootFilesystem: true
           volumeMounts:
             - mountPath: /etc/datadog-agent
               name: config
@@ -1408,6 +1411,7 @@ spec:
                 - DAC_READ_SEARCH
                 - MKNOD
             privileged: false
+            readOnlyRootFilesystem: true
             seccompProfile:
               localhostProfile: system-probe
               type: Localhost
@@ -1428,6 +1432,8 @@ spec:
             - mountPath: /etc/datadog-agent
               name: config
               readOnly: true
+            - mountPath: /opt/datadog-agent/run
+              name: eventsocket
             - mountPath: /etc/datadog-agent/system-probe.yaml
               name: sysprobe-config
               readOnly: true
@@ -1602,6 +1608,8 @@ spec:
             path: /var/run/datadog
             type: DirectoryOrCreate
           name: apmsocket
+        - emptyDir: {}
+          name: eventsocket
         - configMap:
             name: datadog-system-probe-config
           name: sysprobe-config

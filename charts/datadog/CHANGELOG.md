@@ -1,5 +1,9 @@
 # Datadog changelog
 
+## 3.147.0
+
+* Enable readOnlyRootFilesystem by default on all Datadog Agent containers.
+
 ## 3.146.4
 
 * Add datadog endpoint configMap.
@@ -7,7 +11,6 @@
 ## 3.146.3
 
 * Fix templating granular roles defined in `datadog.secretBackend.roles` by removing the checksum annotation
-
 
 ## 3.146.2
 
